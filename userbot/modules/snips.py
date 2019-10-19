@@ -8,10 +8,8 @@ from userbot.events import register
 from userbot import CMD_HELP, BOTLOG_CHATID
 
 
-@register(outgoing=True,
-          pattern=r"\$\w*",
-          ignore_unsafe=True,
-          disable_errors=True)
+@register(outgoing=True, pattern=r"\$\.*", ignore_unsafe=True)
+
 async def on_snip(event):
     """ Snips logic. """
     try:
@@ -20,23 +18,22 @@ async def on_snip(event):
         return
     name = event.text[1:]
     snip = get_snip(name)
-    message_id_to_reply = event.message.reply_to_msg_id
-    if not message_id_to_reply:
-        message_id_to_reply = None
-    if snip and snip.f_mesg_id:
+    if snip:
         msg_o = await event.client.get_messages(entity=BOTLOG_CHATID,
                                                 ids=int(snip.f_mesg_id))
+        message_id_to_reply =
+event.message.reply_to_msg_id
+        if not message_id_to_reply:
+           message_id_to_reply = None
+
         await event.client.send_message(event.chat_id,
                                         msg_o.message,
                                         reply_to=message_id_to_reply,
                                         file=msg_o.media)
-    elif snip and snip.reply:
-        await event.client.send_message(event.chat_id,
-                                        snip.reply,
-                                        reply_to=message_id_to_reply)
+    await event.delete()
 
 
-@register(outgoing=True, pattern="^.snip (\w*)")
+@register(outgoing=True, pattern="^.snip (.*)")
 async def on_snip_save(event):
     """ For .snip command, saves snips for future use. """
     try:
@@ -44,36 +41,33 @@ async def on_snip_save(event):
     except AtrributeError:
         await event.edit("`Running on Non-SQL mode!`")
         return
-    keyword = event.pattern_match.group(1)
-    string = event.text.partition(keyword)[2]
+    name = event.pattern_match.group(1)
     msg = await event.get_reply_message()
-    msg_id = None
-    if msg and msg.media and not string:
-        if BOTLOG_CHATID:
-            await event.client.send_message(
-                BOTLOG_CHATID, f"#SNIP\
-            \nKEYWORD: {keyword}\
-            \n\nThe following message is saved as the data for the snip, please do NOT delete it !!"
+    if not msg:
+        await event.edit("`I need something to save as a snip, Master ATG. `")
+        Return
+elif BOTLOG_CHATID:
+        await event.client.send_message(
+           BOTLOG_CHATID, f*#SNIP\
+        \nKEYWORD: {name}\
+        \n The following message is saved as the data for the snip, please DO NOT delete it, Master ATG!"
             )
-            msg_o = await event.client.forward_messages(
-                entity=BOTLOG_CHATID,
-                messages=msg,
-                from_peer=event.chat_id,
-                silent=True)
-            msg_id = msg_o.id
+            msg_o = await event.client.foward_messages(entity=BOTLOG_CHATID,
+
+messages=msg,
+
+from_peer=event.chat_id,
+
+silent=True)
+success = "`Snip {} saved successfully. Use` ***${}*** `anywhere to get it, Master `"
+if add_snip(name, msg_o.id) is False:
+await event.edit(success.format('updated', name))
         else:
-            await event.edit(
-                "`Saving snips with media requires the BOTLOG_CHATID to be set.`"
-            )
-            return
-    elif event.reply_to_msg_id and not string:
-        rep_msg = await event.get_reply_message()
-        string = rep_msg.text
-    success = "`Snip {} successfully. Use` **${}** `anywhere to get it`"
-    if add_snip(keyword, string, msg_id) is False:
-        await event.edit(success.format('updated', keyword))
+            await event.edit(success.format('saved', name))
     else:
-        await event.edit(success.format('saved', keyword))
+        await event.edit(
+"`This feature requires the BOTLOG_CHATID to be set up.`")
+return
 
 
 @register(outgoing=True, pattern="^.snips$")
@@ -97,7 +91,7 @@ async def on_snip_list(event):
     await event.edit(message)
 
 
-@register(outgoing=True, pattern="^.remsnip (\w*)")
+@register(outgoing=True, pattern="^.remsnip (.*)")
 async def on_snip_delete(event):
     """ For .remsnip command, deletes a snip. """
     try:
@@ -116,8 +110,8 @@ CMD_HELP.update({
     "snips":
     "\
 $<snip_name>\
-\nUsage: Gets the specified snip, anywhere.\
-\n\n.snip <name> <data> or reply to a message with .snip <name>\
+\nUsage: Gets the specified snip.\
+\n\n.snip <name>\
 \nUsage: Saves the message as a snip (global note) with the name. (Works with pics, docs, and stickers too!)\
 \n\n.snips\
 \nUsage: Gets all saved snips.\
