@@ -20,7 +20,7 @@ UNAPPROVED_MSG = (
     "`Hello! This is an automated message.\n\n`"
     "`I haven't approved you to PM yet.`"
     "`Please wait for me to look in, I mostly approve PMs.\n\n`"
-    "`Until then, please don't spam my PM, you'll get blocked and reported!`")
+    "`Until then, contact me via @YumiUzo_bot and please don't spam my PM and bot, you'll get blocked and reported!`")
 # =================================================================
 
 
