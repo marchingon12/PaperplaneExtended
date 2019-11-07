@@ -20,7 +20,7 @@ UNAPPROVED_MSG = (
     "`Hello! This is an automated message.\n\n`"
     "`I haven't approved you to PM yet.`"
     "`Please wait for me to look in, I mostly approve PMs.\n\n`"
-    "`Until then, contact me via @YumiUzo_bot and please don't spam my PM and bot, you'll get blocked and reported!`")
+    "`Until then, contact me via @YumiUzo_bot and please don't spam my PM or bot, you'll get blocked and reported! Tho if you do really wanna spam go ahead, I'll just give you global ban.`")
 # =================================================================
 
 
@@ -69,8 +69,8 @@ async def permitpm(event):
 
                 if COUNT_PM[event.chat_id] > 4:
                     await event.respond(
-                        "`You were spamming my PM, which I didn't like.`\n"
-                        "`You have been BLOCKED and reported as SPAM, until further notice.`"
+                        "`You were spamming my PM, ya idiot.`\n"
+                        "`You have been BLOCKED and reported as SPAM. Unless I'm in a good mood I'll unblock you.`"
                     )
 
                     try:
