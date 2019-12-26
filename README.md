@@ -13,7 +13,7 @@
 <p align="center">&nbsp;</p>
 <h2 align="center">Updates and Support</h2>
 <p align="center">Join our <a href="https://t.me/PaperplaneExtended">Telegram Channel</a> for update notifications!</p>
-<p align="center">Also join our <a href="https://t.me/PaperplaneExtendedSupport">Telegram Support Group</a> for help and support!</p>
+
 <p align="center">&nbsp;</p>
 <h2 align="center">License</h2>
 <p align="center"><a href="https://github.com/AvinashReddy3108/PaperplaneExtended/blob/sql-extended/LICENSE">Raphielscape Public License</a> - Version 1.c, June 2019</p>
