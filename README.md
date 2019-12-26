@@ -12,7 +12,6 @@
 <p align="center">Huge thanks to <a href="https://github.com/AvinashReddy3108/PaperplaneExtended/graphs/contributors">everyone</a> who have helped make this userbot awesome!!</p>
 <p align="center">&nbsp;</p>
 <h2 align="center">Updates and Support</h2>
-<p align="center">Join our <a href="https://t.me/PaperplaneExtended">Telegram Channel</a> for update notifications!</p>
 
 <p align="center">&nbsp;</p>
 <h2 align="center">License</h2>
