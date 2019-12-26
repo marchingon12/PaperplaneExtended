@@ -12,6 +12,7 @@
 <p align="center">Huge thanks to <a href="https://github.com/AvinashReddy3108/PaperplaneExtended/graphs/contributors">everyone</a> who have helped make this userbot awesome!!</p>
 <p align="center">&nbsp;</p>
 <h2 align="center">Updates and Support</h2>
+<p align="center">This project is no longer maintained. You can still use the userbot but there will be no further official updates announced. Or just use my fellow dev's Userbot Friendly Telegram.</p>
 
 <p align="center">&nbsp;</p>
 <h2 align="center">License</h2>
